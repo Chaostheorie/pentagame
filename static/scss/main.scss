@@ -1,0 +1,83 @@
+/*
+Main.scss Frontend stylesheet for pentagame online
+@license GPL v3.0 or newer @ Cobalt <https://cobalt.rocks>
+*/
+
+/*
+ Importing everything here is acceptable as PurgeCSS will remove anything unused
+ This is preferred instead of manually tracking down every used component
+ */
+
+@import 'bootstrap-icons/font/bootstrap-icons'; // this allows non-traditional include with css (see https://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file/36166487#36166487)
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'variables.scss';
+@import 'layout.scss';
+@import 'color.scss';
+
+@font-face {
+    font-family: 'bootstrap-icons';
+    src: url('#{$bs-font-path}/bootstrap-icons.woff') format('woff'),
+        url('#{$bs-font-path}/bootstrap-icons.woff2') format('woff2') !important;
+}
+
+.bi,
+.bi::before,
+.bi::after {
+    font-family: 'bootstrap-icons' !important;
+    font-style: normal;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.1em;
+}
+
+.bi-heading::after,
+.bi-heading::before {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+#content {
+    min-height: 100vh;
+    margin-left: 0rem !important;
+    margin-right: 0rem !important;
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+
+.title,
+h1 {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin: 0.1rem auto;
+        width: 50%;
+        height: 0.1rem;
+        background: $dark;
+    }
+}
+
+.title-white {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin: 0.1rem auto;
+        width: 50%;
+        height: 0.1rem;
+        background: $light;
+    }
+}
+
+.text-pre {
+    font-family: monospace !important;
+    font-weight: bold;
+}

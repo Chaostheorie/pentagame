@@ -1,0 +1,36 @@
+{
+    "name": "pentagame-libs",
+    "version": "1.0.0",
+    "description": "Frontend libraries used for pentagame",
+    "main": "",
+    "author": "Cobalt <cobalt.rocks>",
+    "license": "GPL-3.0-or-later",
+    "scripts": {
+        "compile": "rm compile.log && bash ../scripts/compile.sh >> compile.log && webpack >> compile.log",
+        "production-compile": "rm compile.log && bash ../scripts/compile.sh >> compile.log && webpack --config webpack.prod.config.js >> compile.log",
+        "lint": "stylelint scss/*.scss"
+    },
+    "devDependencies": {
+        "@types/bootstrap": "^5.0.4",
+        "@types/dompurify": "^2.2.1",
+        "@types/svgjs.draggable": "^0.0.31",
+        "purgecss": "^3.0.0",
+        "sass": "^1.29.0",
+        "stylelint": "^13.7.2",
+        "stylelint-config-standard": "^20.0.0",
+        "ts-loader": "^8.0.14",
+        "typescript": "^4.1.3",
+        "webpack": "^5.16",
+        "webpack-cli": "^4.4",
+        "webpack-merge": "^5.4.0",
+        "websocket-ts": "^1.1.0"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.5.4",
+        "@svgdotjs/svg.js": "^3.0.16",
+        "bootstrap": "^5.0.0-beta1",
+        "bootstrap-icons": "^1.3.0",
+        "dompurify": "^2.2.6",
+        "typescript-map": "^0.1.0"
+    }
+}

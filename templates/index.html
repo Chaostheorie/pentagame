@@ -1,0 +1,139 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container h-100 py-4">
+    <div class="row my-5">
+        <div class="col-md-6">
+            <h1>Welcome to Pentagame</h1>
+            <p>
+                Pentagame is an abstract strategy game without chance element.
+                It is played on a pentagram star that shows 100 round stops. The
+                5 corners and the 5 crossings in the pentagram are colored
+                (white, blue, red, green, yellow). It can be played with 2, 3 or
+                4 players. It looks a bit like a pentagonal ludo, but it is
+                truly different. For example, there is no chance and pieces
+                don't get beaten. Instead, it is all about moving, swapping,
+                about paths and about areas. Every player plays 5 pieces of one
+                shape, e.g. cats against pawns or whatever …
+            </p>
+            <div class="text-center">
+                <div class="btn-group justify-content-center btn-group-lg">
+                    <a href="/content/rules" class="btn btn-lg btn-dark">
+                        <i class="bi bi-file-text"></i>
+                        Read more
+                    </a>
+                    <a href="/games/" class="btn btn-lg btn-dark">
+                        <i class="bi bi-controller"></i>
+                        Play now
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+            <img
+                class="w-100 h-100"
+                width="100%"
+                height="100%"
+                alt="Pentagame Board"
+                src="/static/images/brand.svg"
+            />
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="row justify-content-between text-center text-white">
+            <div class="col-md-5 flex-fill p-3 m-1 bg-success shadow rounded">
+                <i class="bi bi-heading bi-journal-bookmark"></i>
+
+                <h3>Rules</h3>
+
+                <p>
+                    The rules of pentagame are open and available in multiple
+                    languages on github. There's even an illustrated version. If
+                    you want you can even contribute yourself or discuss with
+                    others!
+                </p>
+
+                <div class="btn-group">
+                    <a
+                        class="btn btn-outline-light"
+                        href="https://github.com/penta-jan/Illustrated-Rules"
+                    >
+                        <i class="bi bi-images"></i>
+                        Illustrated Rules
+                    </a>
+                    <a class="btn btn-outline-light" href="/content/rules">
+                        <i class="bi bi-file-text"></i>
+                        <span class="visually-hidden">Complete</span> Rules
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-5 flex-fill m-1 p-3 bg-danger shadow rounded">
+                <i class="bi bi-heading bi-book"></i>
+
+                <h3>Book</h3>
+
+                <p>
+                    A book by Jan Suchanek about pentagame and it's background
+                    is being written at the moment. It will contain extended
+                    research on pentagame on the math behind pentagame but will
+                    also show the background of the design and it's origins. An
+                    original book by the original designer!
+                </p>
+
+                <a
+                    href="https://github.com/penta-jan/pentagame/blob/master/Pentagame__The_Book.pdf"
+                    class="btn btn-outline-light"
+                >
+                    <i class="bi bi-pencil-square"></i>
+                    Read the excerpt
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-between text-white text-center">
+            <div class="col-md-5 flex-fill m-1 p-3 bg-dark shadow rounded">
+                <i class="bi bi-heading bi-code-slash"></i>
+
+                <h3>Development</h3>
+
+                <p>
+                    The community around pentagame is active and is working on
+                    providing software libraries for you. You can create your
+                    own virtual pentagame or do research with it.
+                </p>
+
+                <a
+                    href="https://github.com/Penta-game/"
+                    class="btn btn-outline-light"
+                >
+                    <i class="bi bi-github"></i>
+                    Visit our Organization
+                </a>
+            </div>
+            <div class="col-md-5 flex-fill p-3 m-1 bg-info shadow rounded">
+                <i class="bi bi-heading bi-diagram-2"></i>
+
+                <h3>Tournaments</h3>
+
+                <p>
+                    You can participate in tournaments at c-base berlin. At
+                    events like the CCC are tournaments too, where you xan even
+                    win your own pentagame related prize. The latest winner was
+                    even interviewed!
+                </p>
+
+                <a
+                    href="https://youtu.be/pSqBq2sewgY"
+                    class="btn btn-outline-light"
+                >
+                    <i class="bi bi-youtube"></i>
+                    Watch on YouTube
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if alert != "" %}
+<span class="d-none" id="hidden-alert">{{ alert }}</span>
+{% endif -%} {% endblock %}

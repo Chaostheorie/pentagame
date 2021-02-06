@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /static/
+Disallow: /api/
+Disallow: /users/view/

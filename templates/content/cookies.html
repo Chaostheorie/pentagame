@@ -1,0 +1,114 @@
+{% extends "base.html" %} {% block title %}Cookies{% endblock %} {% block
+content %}
+<div class="container h-100 py-4">
+    <h1 class="title">Cookies</h1>
+
+    <!-- Accordion wrapper -->
+    <div class="accordion accordion-flush my-4" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                >
+                    What are cookies?
+                </button>
+            </h2>
+            <div
+                id="flush-collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample"
+            >
+                <div class="accordion-body">
+                    An HTTP cookie (also called web cookie, Internet cookie,
+                    browser cookie, or simply cookie) is a small piece of data
+                    stored on the user's computer by the web browser while
+                    browsing a website. Cookies were designed to be a reliable
+                    mechanism for websites to remember stateful information
+                    (such as items added in the shopping cart in an online
+                    store) or to record the user's browsing activity (including
+                    clicking particular buttons, logging in, or recording which
+                    pages were visited in the past). They can also be used to
+                    remember pieces of information that the user previously
+                    entered into form fields, such as names, addresses,
+                    passwords, and payment card numbers.
+
+                    <br />
+                    Source:
+                    <a
+                        class="dark-link"
+                        href="https://en.wikipedia.org/wiki/HTTP_cookie"
+                    >
+                        Wikipedia, 23/10/20
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseTwo"
+                >
+                    For what are cookies used?
+                </button>
+            </h2>
+            <div
+                id="flush-collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingTwo"
+                data-bs-parent="#accordionFlushExample"
+            >
+                <div class="accordion-body">
+                    Cookies are only used when <strong>necessary</strong>. The
+                    authentication system stores an
+                    <span class="text-monospace">auth</span> cookie after you
+                    successfully authenticated by logging in. This cookie is
+                    encrypted, limited to this domain, only editable by the
+                    server and only valid for a limited amount of time. This
+                    cookie is necessary for recognizing authenticated users.
+                    Cookies may also be used to one-use-only allow for alerts
+                    when logging out. Those cookies contain an encrypted version
+                    of your username and unique id or a simple string. But
+                    there's no need to trust us, you can take a look at the
+                    <a
+                        href="https://github.com/Penta-game/pentagame"
+                        class="dark-link"
+                    >
+                        source code.
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Accordion wrapper -->
+
+    <p>
+        <a
+            href="https://github.com/Penta-Game/pentagame"
+            class="btn btn-outline-dark mb-3"
+            data-color="dark"
+        >
+            See Source Code
+        </a>
+    </p>
+
+    <h1 class="title">About</h1>
+
+    <p>
+        Pentagame-online is a rust based project by
+        <a href="https://cobalt.rocks" class="dark-link">Cobalt</a>. It's
+        available under GPL-v3.0 or later. Please consider contributing!
+    </p>
+</div>
+
+{% endblock %}

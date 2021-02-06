@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container h-100 py-4">
+    <form class="p-1 d-flex justify-content-center my-2 mx-auto" method="POST">
+        <div class="card card0 p-4 rounded">
+            <div class="row flex-grow justify-content-center my-auto">
+                <div class="col w-100 m-5">
+                    <h1 class="mb-5 text-center heading title">
+                        Join game {{ game }}
+                    </h1>
+                    <h6 class="pl-2 mb-3">
+                        Please verify yourself with the game pin
+                    </h6>
+                    <div class="form-group">
+                        <div class="input-name mb-3">
+                            <input
+                                type="password"
+                                name="pin"
+                                if="pin"
+                                placeholder="Pin"
+                                aria-placeholder="Game pin"
+                                class="form-control id {% if pin_error %}is-invalid{% endif %}"
+                                maxlength="8"
+                            />
+                            <span
+                                class="underline-animation"
+                                style="max-width: 40rem !important"
+                            ></span>
+                            <div class="invalid-feedback">
+                                The pin was invalid.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center my-3 px-3">
+                        <button class="btn-block btn btn-outline-dark">
+                            Join Game {{ game }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %} {% block title %}Verify Game Pin{% endblock %}

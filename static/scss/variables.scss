@@ -1,0 +1,18 @@
+/*
+variables.scss Frontend stylesheet for pentagame
+Should be able to be left out
+@license GPL v3.0 or newer @ Cobalt <https://cobalt.rocks>
+*/
+
+// change this once a fully qualified domain name is available
+
+$dark: #262626;
+$darker: darken($dark, 5);
+$danger: #f93154;
+$warning: #ffa900;
+$light: #fbfbfb;
+$primary: #1266f1;
+$secondary: #b23cfd;
+$success: #00b74a;
+
+$bs-font-path: './fonts' !default;

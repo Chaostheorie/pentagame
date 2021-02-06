@@ -1,0 +1,17 @@
+CREATE TABLE USERS (
+    id UUID NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE GAMES (
+    id serial PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE USER_GAMES (
+    id serial PRIMARY KEY,
+    user_id uuid REFERENCES USERS (id) ON DELETE CASCADE NOT NULL,
+    game_id INT REFERENCES GAMES (id) ON DELETE CASCADE NOT NULL
+);
