@@ -408,3 +408,10 @@ pub async fn get_view_game(
         .into_response(),
     )
 }
+
+/*
+Static routes.
+*/
+pub async fn get_robots_txt() -> UserResponse {
+    UserError::wrap_template(templates::Robots().into_response())
+}

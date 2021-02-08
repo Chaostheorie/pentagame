@@ -6,6 +6,7 @@ mod graph;
 mod server;
 mod state;
 mod ws;
+mod db;
 
 // imports
 use crate::config::DEFAULT_CONFIG_NAME;
@@ -14,6 +15,8 @@ use std::env::{set_var, var};
 use std::path::Path;
 #[macro_use]
 extern crate lazy_static;
+#[macro_use]
+extern crate diesel;
 
 pub fn main() -> std::io::Result<()> {
     let matches: ArgMatches = App::new("pentagame online 2")

@@ -10,11 +10,11 @@ use std::fmt::Debug;
 use std::sync::Mutex;
 
 // Figures are simplified based on denomination Rules
-pub type Figure = u8;
+pub type Figure = String;
 // State containing Positions of all figures (5 figures per player, 5 gray stoppers, 5 black stoppers)
 // LOCATION: ([i16; 3], u8)
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone)]
 pub struct GraphState([LOCATION; 35]);
 
 // Serializable variant (due to some serde constraints the array seems to not be fertilizable directly)
@@ -42,7 +42,7 @@ impl From<&GraphState> for ResizableGraphState {
 // vertexmap
 pub const BASE_VERTEX_MAP: [i16; 10] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // in case the naming changes these are statically mapped
 
-#[derive(Deserialize, Serialize, Hash, PartialEq, Eq, Debug, Clone, Copy)]
+#[derive(Deserialize, Serialize, Hash, PartialEq, Eq, Debug, Clone)]
 pub struct Field {
     pub occupied: bool,
     pub owner: Option<Figure>,
@@ -97,12 +97,17 @@ impl Graph {
         return Ok(self.a_star(src, dest, state));
     }
 
-    fn a_star<'a>(&'a self, src: &'a FIELD, dest: &'a FIELD, state: &'a GraphState) -> (bool, u8) {
+    fn a_star<'a>(
+        &'a self,
+        src: &'a FIELD,
+        dest: &'a FIELD,
+        state: &'a GraphState,
+    ) -> (bool, String) {
         // a star with heuristics
         let visited = VISITED.clone(); // RAM goes brrrrrrrrrrr
 
         // prepare visited. (Ah that sweet parallel overkill)
-        let destination_owner_mutex = Mutex::new(u8::MAX);
+        let destination_owner_mutex = Mutex::new("empty".to_owned());
         state.0.into_par_iter().for_each(|(field, figure)| {
             if field[0] != -1 {
                 visited.insert(*field, true);
@@ -137,7 +142,7 @@ impl Graph {
             item = priority_queue.pop();
         }
 
-        return (false, u8::MAX);
+        return (false, "invalid move".to_owned());
     }
 
     fn add_neighbors(src: &FIELD, dest: FIELD, queue: &mut PriorityQueue<FIELD, i16>) {
@@ -265,7 +270,7 @@ impl GraphState {
         This 'construction' is not especially optimized to allow for better readability
         It doesn't really matter anyway since it's saved in a lazy constant
         */
-        let mut figures: [LOCATION; 35] = [([0_i16; 3], 0_u8); 35];
+        let mut figures: [LOCATION; 35] = [([0_i16; 3], "".to_owned()); 35];
 
         // adding players
         (0..5).into_iter().for_each(|figure| {
@@ -273,12 +278,12 @@ impl GraphState {
                 if index > 5 {
                     figures[figure * 5 + index] = (
                         [(index - (figure - 1) * 5).try_into().unwrap(), 0, 0],
-                        (index + 1).try_into().unwrap(),
+                        (index + 1).to_string(),
                     )
                 } else {
                     figures[figure * 5 + index] = (
                         [(index + 5).try_into().unwrap(), 0, 0],
-                        (index + 1).try_into().unwrap(),
+                        (index + 1).to_string(),
                     )
                 };
             });
@@ -288,16 +293,46 @@ impl GraphState {
         for figure in 25..30 {
             figures[figure] = (
                 [(figure - 25).try_into().unwrap(), 0, 0],
-                (figure + 1).try_into().unwrap(),
+                (figure + 1).to_string(),
             );
         }
 
         // adding gray stoppers
         for figure in 30..35 {
-            figures[figure] = ([-1, -1, -1], (figure + 1).try_into().unwrap());
+            figures[figure] = ([-1, -1, -1], (figure + 1).to_string());
         }
 
         GraphState(figures)
+    }
+}
+
+impl ResizableGraphState {
+    pub fn for_players(players: u8) -> ResizableGraphState {
+        let mut locations = Vec::with_capacity((players * 7).into());
+        vec![0; (players * 7).into()];
+
+        // adding players
+        let player_figures = players * players;
+        for p in 0..players {
+            for f in 0..players {
+                locations.push(([f.into(), 0, 0], format!("{}-{}", p, f)));
+            }
+        }
+
+        // adding black stoppers
+        for figure in player_figures..player_figures + players {
+            locations.push((
+                [(figure - 25).try_into().unwrap(), 0, 0],
+                (figure + 1).to_string(),
+            ));
+        }
+
+        // adding gray stoppers
+        for figure in player_figures + players..player_figures + players * 2 {
+            locations.push(([-1, -1, -1], (figure + 1).to_string()));
+        }
+
+        ResizableGraphState { locations }
     }
 }
 

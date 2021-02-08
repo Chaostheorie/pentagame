@@ -44,6 +44,10 @@ pub struct GamesViewTemplate {
 }
 
 #[derive(Template)]
+#[template(path="robots.txt")]
+pub struct Robots();
+
+#[derive(Template)]
 #[template(path = "games/game.html")]
 pub struct GameBoardTemplate {
     pub id: Option<User>,

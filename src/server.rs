@@ -90,7 +90,7 @@ pub async fn main() -> Result<()> {
                         .route("/create", web::post().to(routes::post_create_game))
                         .route("/view/{id}", web::get().to(routes::get_view_game)),
                 )
-                .route("/robots.txt", web::get().to(api_routes::get_robots_txt))
+                .route("/robots.txt", web::get().to(routes::get_robots_txt))
                 .route("/", web::get().to(routes::get_index))
                 .default_service(web::route().to(routes::get_error_404))
         }
@@ -105,7 +105,7 @@ pub async fn main() -> Result<()> {
         rx.recv().unwrap();
 
         // tear down games
-        unimplemented!();
+        log_info("SERVER", "Couldn't tear down games or users due to missing implementation".to_owned());
 
         // stop server gracefully
         executor::block_on(srv.stop(true))

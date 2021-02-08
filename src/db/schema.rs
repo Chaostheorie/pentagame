@@ -3,6 +3,7 @@ table! {
         id -> Int4,
         name -> Text,
         description -> Nullable<Text>,
+        state -> Int2,
     }
 }
 
@@ -22,7 +23,6 @@ table! {
     }
 }
 
-joinable!(games -> users (user_id));
 joinable!(user_games -> games (game_id));
 joinable!(user_games -> users (user_id));
 
